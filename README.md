@@ -1,57 +1,82 @@
-# Problem Statement
-In the banking industry, detecting credit card fraud using machine learning is not just a trend; it is a necessity for banks, as they need to put proactive monitoring and fraud prevention mechanisms in place. Machine learning helps these institutions reduce time-consuming manual reviews, costly chargebacks and fees, and denial of legitimate transactions.
+# FindDefault (Prediction of Credit Card fraud) - Capstone Project
 
-As a part of the analytics team working on a fraud detection model and its cost-benefit analysis. We need to develop a machine learning model to detect fraudulent transactions based on the historical transactional data of customers with a pool of merchants.Based on your understanding of the model, we have to analyse the business impact of these fraudulent transactions and recommend the optimal ways that the bank can adopt to mitigate the fraud risks.
+## Problem Statement:
+A credit card is one of the most widely used financial products for online purchases and payments. While credit cards offer convenience in managing finances, they also come with risks. Credit card fraud involves the unauthorized use of someone else's credit card or credit card information to make purchases or withdraw cash. It is crucial for credit card companies to identify fraudulent transactions to ensure customers are not charged for items they did not purchase.
+
+## About Credit Card Fraud Detection:
+- **What is credit card fraud detection?**
+
+Credit card fraud detection encompasses the policies, tools, methodologies, and practices that credit card companies and financial institutions use to combat identity fraud and prevent fraudulent transactions.
+
+In recent years, with the explosion of data and the surge in payment card transactions, credit fraud detection has largely become digitized and automated. Modern solutions primarily utilize artificial intelligence (AI) and machine learning (ML) to manage data analysis, predictive modeling, decision-making, fraud alerts, and remediation activities when instances of credit card fraud are detected. 
+
+- **Anomaly detection**
+
+Anomaly detection involves analyzing vast amounts of data points from both internal and external sources to establish a framework of “normal” activity for each user, thereby identifying regular patterns in their behavior.
+
+Data used to create the user profile includes:
+
+- Purchase history and other historical data
+
+- Location
+
+- Device ID
+
+- IP address
+
+- Payment amount
+
+- Transaction information
+
+When a transaction deviates from the established normal activity, the anomaly detection tool alerts the card issuer and, in some cases, the user. Based on the transaction details and the assigned risk score, these fraud detection systems may flag the transaction for review or place a hold on it until the user verifies their activity.
+
+- **What can be an anomaly?**
+  - A sudden increase in spending
+  - Purchase of a large ticket item
+  - A series of rapid transactions
+  - Multiple transactions with the same merchant
+  - Transactions that originate in an unusual location or foreign country
+  - Transactions that occur at unusual times
+
+  If the anomaly detection tool leverages ML, the models can also be self-learning, meaning that they will constantly gather and analyze new data to update the existing model and provide a more precise scope of acceptable activity for the user.
 
  
+## Project Introduction: 
+The dataset contains transactions made by European cardholders in September 2013. This dataset includes transactions over two days, with 492 frauds out of 284,807 transactions, highlighting a highly imbalanced nature where fraudulent transactions account for only 0.172% of all transactions.
 
-# Understanding and Defining Fraud
+In this project, we aim to build a classification model to predict whether a transaction is fraudulent. We will employ various predictive models to assess their accuracy in distinguishing between normal and fraudulent transactions.
 
-Credit card fraud is any dishonest act or behaviour to obtain information without the proper authorisation of the account holder for financial gain. Among the different ways of committing fraud, skimming is the most common one. Skimming is a method used for duplicating information located on the magnetic stripe of the card.  Apart from this, other ways of making fraudulent transactions are as follows:
+## Project Outline:
+- **Exploratory Data Analysis:** Analysing and understanding the data to identify patterns, relationships, and trends in the data by using Descriptive Statistics and Visualizations.
+- **Data Cleaning:** Checking for the data quality, handling the missing values and outliers in the data.
+- **Dealing with Imbalanced data:** This data set is highly imbalanced. The data should be balanced using the appropriate Resampling Techniques (NearMiss Undersampling, SMOTETomek) before moving onto model building.
+- **Feature Engineering:** Transforming the existing features for better performance of the ML Models. 
+- **Model Training:** Splitting the data into train & test sets and use the train set to estimate the best model parameters.
+- **Model Validation:** Evaluating the performance of the models on data that was not used during the training process. The goal is to estimate the model's ability to generalize to new, unseen data and to identify any issues with the model, such as overfitting.
+- **Model Selection:** Choosing the most appropriate model that can be used for this project.
+- **Model Deployment:** Model deployment is the process of making a trained machine learning model available for use in a production environment.
 
-Manipulation or alteration of genuine cards
-Creation of counterfeit cards
-Stolen or lost credit cards
-Fraudulent telemarketing
+## Project Work Overview:
+Our dataset exhibits significant class imbalance, with the majority of transactions being non-fraudulent (99.82%). This presents a challenge for predictive modeling, as algorithms may struggle to accurately detect fraudulent transactions amidst the overwhelming number of legitimate ones. To address this issue, we employed various techniques such as undersampling, oversampling, and synthetic data generation.
+1. **Undersampling:** We utilized the NearMiss technique to balance the class distribution by reducing the number of instances of non-fraudulent transactions to match that of fraudulent transactions. This approach helped in mitigating the effects of class imbalance. Our attempt to address class imbalance using the NearMiss technique did not yield satisfactory results. Despite its intention to balance the class distribution, the model's performance was suboptimal. This could be attributed to the loss of valuable information due to the drastic reduction in the majority class instances, leading to a less representative dataset. As a result, the model may have struggled to capture the intricacies of the underlying patterns in the data, ultimately affecting its ability to accurately classify fraudulent transactions.
+2. **Oversampling:** To further augment the minority class, we applied the SMOTETomek method with a sampling strategy of 0.75. This resulted in a more balanced dataset, enabling the models to better capture the underlying patterns in fraudulent transactions.
+3. **Machine Learning Models:** After preprocessing and balancing the dataset, we trained several machine learning models, including:
 
-Data : https://www.kaggle.com/datasets/kartik2112/fraud-detection/data?select=fraudTest.csv
+   - Logistic Regression
+   - K-Nearest Neighbors (KNN)
+   - Random Forest Classifier
+   - AdaBoost Classifier
+   - XGBoost Classifier
+4. **Evaluation Metrics:** We evaluated the performance of each model using various metrics such as accuracy, precision, recall, and F1-score. Additionally, we employed techniques like cross-validation and hyperparameter tuning to optimize the models' performance.
+5. **Model Selection:** Among the various models and balancing methods experimented with, the XGBoost model stands out as the top performer when using oversampling techniques. Despite the inherent challenges posed by imbalanced datasets, the XGBoost algorithm demonstrates robustness and effectiveness in capturing the underlying patterns associated with fraudulent transactions. By generating synthetic instances of the minority class through oversampling methods like SMOTETomek, the XGBoost model achieves a more balanced representation of the data, enabling it to learn and generalize better to unseen instances. This superior performance underscores the importance of leveraging advanced ensemble techniques like XGBoost, particularly in the context of imbalanced datasets characteristic of credit card fraud detection.
+   
+In summary, our approach involved preprocessing the imbalanced dataset using undersampling and oversampling techniques, followed by training and evaluating multiple machine learning models. By systematically exploring different methodologies and algorithms, we aimed to develop robust fraud detection XGBoost model capable of accurately identifying fraudulent transactions while minimizing false positives.
 
-# Data Understanding
+## Future Work:
+Anomaly detection techniques, including isolation forests and autoencoders, offer specialized capabilities for identifying outliers and anomalies within datasets. By incorporating these methods alongside traditional classification approaches, we can enhance the effectiveness of fraud detection systems. Isolation forests excel at isolating anomalies by randomly partitioning data points, making them particularly useful for detecting fraudulent transactions that deviate from normal patterns. Autoencoders, on the other hand, leverage neural networks to reconstruct input data, effectively learning representations of normal behavior and flagging deviations as potential anomalies.
 
-This is a simulated data set taken from the Kaggle website and contains both legitimate and fraudulent transactions. You can download the data set using this link.
-The data set contains credit card transactions of around 1,000 cardholders with a pool of 800 merchants from 1 Jan 2019 to 31 Dec 2020. It contains a total of 18,52,394 transactions, out of which 9,651 are fraudulent transactions. The data set is highly imbalanced, with the positive class (frauds) accounting for 0.52% of the total transactions. Now, since the data set is highly imbalanced, it needs to be handled before model building. The feature 'amt' represents the transaction amount. The feature 'is_fraud' represents class labelling and takes the value 1 the transaction is a fraudulent transaction and 0, otherwise.
-
-# Business Impact:
-
-After the model has been built and evaluated with the appropriate metrics, we have demonstrated its potential benefits by performing a cost-benefit analysis which can be presented to the relevant business stakeholders. 
-
-To perform this analysis, we have compared the costs incurred before and after the model is deployed. Earlier, the bank paid the entire transaction amount to the customer for every fraudulent transaction which accounted for a heavy loss to the bank.
-
-Now after the model has been deployed, the bank plans to provide a second layer of authentication for each of the transactions that the model predicts as fraudulent. If a payment gets flagged by the model, an SMS will be sent to the customer requesting them to call on a toll-free number to confirm the authenticity of the transaction. A customer experience executive will also be made available to respond to any queries if necessary. Developing this service would cost the bank $1.5 per fraudulent transaction.
-
-For the fraudulent transactions that are still not identified by the model, the bank will need to pay the customer the entire transaction amount as it was doing earlier.
-
-# Cost-Benefit Analysis
+Exploring the integration of advanced deep learning models like Convolutional Neural Networks (CNNs) and Recurrent Neural Networks (RNNs) alongside traditional machine learning techniques holds significant promise for enhancing fraud detection systems. These neural network architectures offer unique capabilities for processing sequential and structured data, which are crucial in identifying anomalous patterns indicative of fraudulent activities. By leveraging CNNs and RNNs, alongside hybrid models that combine the strengths of both deep learning and traditional algorithms, we can improve accuracy, adaptability, and overall performance in fraud detection. Additionally, techniques such as unsupervised learning, transfer learning, and feature extraction through deep learning can further enhance the efficiency and effectiveness of fraud detection systems. Through these advancements, we aim to bolster our ability to detect and prevent fraudulent transactions, ultimately safeguarding financial systems and protecting consumers from financial losses.
 
 
-Part I: We have Analysed the dataset and found the following figures:
+   
 
-Average number of transactions per month 
-Average number of fraudulent transactions per month
-Average amount per fraudulent transaction 
-
-Part II: Compare the cost incurred per month by the bank before and after the model deployment:
-
-Cost incurred per month before the model was deployed = Average amount per fraudulent transaction * Average number of fraudulent transactions per month
-Cost incurred per month after the model is built and deployed: Use the test metric from the model evaluation part and the calculations performed in Part I to compute the values given below
- 
-
-Let TF be the average number of transactions per month detected as fraudulent by the model and let the cost of providing customer executive support per fraudulent transaction detected by the model = $1.5
-
-Total cost of providing customer support per month for fraudulent transactions detected by the model = 1.5 * TF.
-Let FN be the average number of transactions per month that are fraudulent but not detected by the model 
-
-Cost incurred due to these fraudulent transactions left undetected by the model = Average amount per fraudulent transaction * FN
-Therefore, the cost incurred per month after the model is built and deployed = 1.5*TF + Average amount per fraudulent transaction * FN
-Final savings = Cost incurred before - Cost incurred after.
-Thus, the cost incurred now is due to the left out fraudulent transactions that the model fails to detect and the installation cost of the second level authentication service. Hence, the total savings for the bank would be the difference of costs incurred after and before the model deployment.
