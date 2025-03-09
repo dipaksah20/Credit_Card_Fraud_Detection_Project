@@ -1,4 +1,4 @@
-# FindDefault (Prediction of Credit Card fraud) - Capstone Project
+# Credit Card Fraud Detection - Capstone Project - IIIT Bangalore
 
 ## Problem Statement:
 A credit card is one of the most widely used financial products for online purchases and payments. While credit cards offer convenience in managing finances, they also come with risks. Credit card fraud involves the unauthorized use of someone else's credit card or credit card information to make purchases or withdraw cash. It is crucial for credit card companies to identify fraudulent transactions to ensure customers are not charged for items they did not purchase.
